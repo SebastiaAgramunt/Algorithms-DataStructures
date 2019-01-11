@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Stack{
-    int i;
-    int* arr;
-    int size;
-};
+#include "stack.h"
 
 struct Stack* create_stack(int size){
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
@@ -34,25 +29,9 @@ int pop_item_stack(struct Stack* stack){
 
 void print_stack(struct Stack* stack){
     if((*stack).i > 0){
-        for(int k = 0; k< (*stack).i; k++){
+        for(int k = 0; k< (*stack).i+1; k++){
             printf("%d\n", (*stack).arr[k]);
         }
     }
 }
 
-int main()
-{
-
-    struct Stack* stack = create_stack(5);
-    add_item_stack(stack,2);
-    add_item_stack(stack,3);
-    add_item_stack(stack,5);
-    add_item_stack(stack,4);
-    print_stack(stack);
-    printf("\n");
-
-    pop_item_stack(stack);
-    print_stack(stack);
-    printf("\n");
-    return 0;
-}

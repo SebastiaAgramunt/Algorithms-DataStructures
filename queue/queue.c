@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Queue{
-    int front,rear,capacity;
-    int* array;
-    int size;
-};
+#include "queue.h"
 
 struct Queue* create_queue(int capacity){
     struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
@@ -51,29 +46,4 @@ void PrintQueue(struct Queue* queue){
     for(int i = (*queue).front; i < (*queue).rear+1; i++){
         printf("%d\n", (*queue).array[i]);
     }
-}
-
-int main(){
-
-    struct Queue* queue = create_queue(7);
-    Enqueue(queue,0);
-    Enqueue(queue,1);
-    Enqueue(queue,2);
-    Enqueue(queue,3);
-    Enqueue(queue,4);
-    Enqueue(queue,5);
-    Enqueue(queue,6); 
-    
-    printf("Queue:\n");
-    PrintQueue(queue);
-    printf("\n");
-
-    Dequeue(queue);
-    Dequeue(queue);
-
-    printf("Queue after 2 dequeues:\n");
-    PrintQueue(queue);
-    printf("\n");
-
-    return 0;
 }

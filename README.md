@@ -1,0 +1,1 @@
+Data structures are to manage (store, retrieve and search) data in computer science. To me, the best resource to learn data structures is [GeeksForGeeks](https://www.geeksforgeeks.org/data-structures/). In this repo I program several data structures in a simple way.

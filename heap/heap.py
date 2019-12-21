@@ -1,10 +1,37 @@
-class BinHeap:
-    def __init__(self):
-        self.__heapList = []
+from random import randint, seed
 
-    #@classmethod
-    #def f(cls, filename):
-    #    return cls(data)
+# Code inspired by the post:
+# https://runestone.academy/runestone/books/published/pythonds/Trees/BinaryHeapImplementation.html
+
+
+# Retrieve top (min in case of MinHeap) --> O(1)
+# Retrieve top + delete top --> O(logn)
+# Insert element --> O(logn)
+# Useful for priority queues, schedulers (where the earliest item is desired), etc
+
+class BinHeap:
+    '''Basic implementation of binary heap:
+    The binary heap can be programmed as a list whose indexes indicate the realtionship of father-son
+    Given node i:
+        Left son: 2i+1
+        Right son: 2i+2
+        Father: i//2 
+
+    This binary heap is programmed as MinHeap, index 0 is the minimum value
+    and sons have larger values than the node at i.
+
+    '''
+    def __init__(self, heapList = []):
+        self._Heapify(heapList)
+
+
+    def _Heapify(self,l):
+        i = len(l) // 2 -1
+        self.__heapList = l[:]
+        while (i >= 0):
+            self._percDown(i)
+            i = i - 1
+
 
     def get_heap(self):
         return self.__heapList
@@ -33,10 +60,10 @@ class BinHeap:
         if 2*i + 1 > len(self.__heapList)-1:
             return None
         elif 2*i + 2 < len(self.__heapList):
-            if self.__heapList[i*2+1] < self.__heapList[i*2+2]:
-                return i * 2 + 1
+            if self.__heapList[2*i+1] < self.__heapList[2*i+2]:
+                return 2*i + 1
             else:
-                return i * 2 + 2
+                return 2*i + 2
         else:
             return 2*i +1
 
@@ -58,19 +85,25 @@ class BinHeap:
         self.__heapList.pop()
         self._percDown(0)
         return retval
-            
-
-    
-
+        
 if __name__ == '__main__':
+
+    # same seed not to change results
+    seed(5)
+    l = [randint(0,10) for _ in range(8)]
+
+    print("The list to heapify is \n{}".format(l))
+
+    # construct an empty binary heap 
     heap = BinHeap()
-
-    l = [9,6,10,4,3,20,1]
-
+    # fill the binary heap element by element
     for elem in l:
         heap.insert(elem)
 
+    print('\nThe binary heap results in the array \n{}'.format(heap.get_heap()))
 
-    print(heap.get_heap())
+    print("\nNow we do the same but instead of filling the heap little by litte we heapify the array")
+    heap2 = BinHeap(l)
+    print("The heapified array is \n{}".format(heap2.get_heap()))
 
 

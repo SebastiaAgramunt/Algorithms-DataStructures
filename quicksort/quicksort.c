@@ -1,6 +1,6 @@
-
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include "quicksort.h"
 
 void swap(int* a, int* b){
 	int a_val = *a;
@@ -9,7 +9,7 @@ void swap(int* a, int* b){
 	*b = a_val;
 }
 
-void printArray(int arr[], int size)  
+void printArray(int* arr, int size)  
 {  
     int i;  
     for (i = 0; i < size; i++){
@@ -18,7 +18,7 @@ void printArray(int arr[], int size)
     printf("\n");
 }
 
-int partition(int arr[], int low, int high){
+int partition(int* arr, int low, int high){
 	int i = low-1; //starting at -1
 	int pivot = arr[high]; //starting at lenght -1 (last element)
 
@@ -32,7 +32,7 @@ int partition(int arr[], int low, int high){
 	return(i+1);
 }
 
-void quicksort(int arr[], int low, int high){
+void quicksort(int* arr, int low, int high){
 	if(low < high){
 		int mid = partition(arr, low, high);
 
@@ -40,31 +40,4 @@ void quicksort(int arr[], int low, int high){
 		quicksort(arr, mid+1, high);
 
 	}
-}
-
-int main(void){
-
-	//int size = 7;
-	//int array[] = {10, 9, 20, 5, 3, 13, 7};
-
-	int size = 7;
-	int *arr = (int*)malloc(size*sizeof(int));
-
-	arr[0] = 10;
-	arr[1] = 9;
-	arr[2] = 20;
-	arr[3] = 5;
-	arr[4] = 3;
-	arr[5] = 13;
-	arr[6] = 7;
-    
-    printf("Initial array: \n"); 
-    printArray(arr, size);
-
-    quicksort(arr, 0, size-1); 
-
-    printf("Sorted array: \n"); 
-    printArray(arr, size); 
-
-	return 0;
 }

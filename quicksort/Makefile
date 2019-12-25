@@ -1,14 +1,16 @@
-all: stack #clean
+all: qsort #clean
 
 CC =			gcc
 CFLAGS =		-O -Wall
 LIBS =			-lm
 
-SOURCES =		stack.c main.c
-OBJECTS =		stack.o main.o
-EXENAME =               stack
+SOURCES =		quicksort.c main.c
+OBJECTS =		quicksort.o main.o
 
-stack: $(OBJECTS)
+EXENAME =       qsort_exe
+
+
+qsort: $(OBJECTS)
 	$(CC) -o $(EXENAME) $(CFLAGS) $(OBJECTS) $(LIBS)
 
 clean: $(OBJECTS)

@@ -4,10 +4,10 @@ CC =			gcc
 CFLAGS =		-O -Wall
 LIBS =			-lm
 
-SOURCES =		quicksort.c main.c
-OBJECTS =		quicksort.o main.o
+SOURCES =		binary_search.c quicksort.c main.c
+OBJECTS =		binary_search.o quicksort.o main.o
 
-EXENAME =		qsort_exe
+EXENAME =		bin_search
 
 
 qsort: $(OBJECTS)

@@ -11,5 +11,6 @@ struct Node* InsertBegin(struct Node*, int);
 //insert element at the end. Last element next must point to NULL
 void InsertEnd(struct Node*, int);
 void Print(struct Node*);
+struct Node* DeleteElement(struct Node*, int);
 
 #endif

@@ -3,8 +3,7 @@
 #include "linked_lists.h"
 
 //insert element at beginning replacing head
-struct Node* InsertBegin(struct Node *head, int i)
-{
+struct Node* InsertBegin(struct Node *head, int i){
     struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
     (*new_node).data = i;
     (*new_node).next = head;
@@ -13,8 +12,7 @@ struct Node* InsertBegin(struct Node *head, int i)
 }
 
 //insert element at the end. Last element next must point to NULL
-void InsertEnd(struct Node *head, int i)
-{
+void InsertEnd(struct Node *head, int i){
     struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
     (*new_node).data = i;
     (*new_node).next = NULL;
@@ -28,6 +26,26 @@ void InsertEnd(struct Node *head, int i)
             break;
         }
         p = (*p).next;
+    }
+}
+
+struct Node* DeleteElement(struct Node* head, int i){
+    struct Node* p = head;
+    struct Node* prev = NULL;
+
+    //if first element is i, return head as next
+    if((*p).data == i){
+        return (*p).next;
+    }else{
+        while(p!=NULL){
+            prev = p;
+            p = (*p).next;
+            if((*p).data == i){
+                (*prev).next = (*p).next;
+                return head;
+            }
+        }
+        return(head);
     }
 }
 

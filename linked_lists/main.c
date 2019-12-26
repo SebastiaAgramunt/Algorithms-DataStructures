@@ -28,5 +28,9 @@ int main()
     printf("After inserting two elements: \n");
     Print(head);
 
+    printf("Deleting element 0: \n");
+    head = DeleteElement(head, 0);
+    Print(head);
+
     return 0;
 }

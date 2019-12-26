@@ -11,9 +11,7 @@ def printInorder(root):
   	if root:
 
 	    printInorder(root.left) 
-	  
 	    print(root.val)
-	  
 	    printInorder(root.right) 
   
   
@@ -23,9 +21,7 @@ def printPostorder(root):
 	if root:
   
 	    printPostorder(root.left) 
-	  
 	    printPostorder(root.right) 
-	  
 	    print(root.val)
   
   
@@ -34,23 +30,21 @@ def printPreorder(root):
 	if root:
   
 	    print(root.val)
-	  
 	    printPreorder(root.left) 
-	  
 	    printPreorder(root.right) 
 
 if __name__ == '__main__':
 
-	root = Node(1)
+	root = Node(0)
 
-	root.left = Node(2)
-	root.right = Node(3)
+	root.left = Node(1)
+	root.right = Node(2)
 
-	root.left.left = Node(4)
-	root.left.right = Node(5)
+	root.left.left = Node(3)
+	root.left.right = Node(4)
 
+	root.right.left = Node(5)
 	root.right.right = Node(6)
-	root.right.left = Node(7)
 
 	print("Prinding in order transversal")
 	printInorder(root)

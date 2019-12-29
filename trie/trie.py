@@ -38,28 +38,32 @@ class Trie:
 
 		return nodeCrawler.endOfWord
 
+	def search_depth(self, substr):
+		# search if this substring is in any word
+		nodeCrawler = self.root
+
+		max_substr = ''
+		for letter in substr:
+			idx = self._charToIdx(letter)
+			if nodeCrawler.children[idx] is None:
+				return max_substr
+			else:
+				max_substr+=letter
+			nodeCrawler = nodeCrawler.children[idx]
+		return max_substr
 
 
-
-if __name__ == '__main__':
-	words = ['there', 'their', 'answer', 'any', 'bye']
-
+def longestCommonSubstring(str1: str, str2: str):
+	# Build a trie of substrings of the first word
 	trie = Trie()
-	for word in words:
-		trie.insert(word)
+	for i in range(0, len(str1)):
+		#print(str1[i:])
+		trie.insert(str1[i:])
 
+	substr = ''
+	for i in range(0, len(str2)):
+		max_substr = trie.search_depth(str2[i:])
+		if len(max_substr) > len(substr):
+			substr = max_substr
 
-	word = 'ther'
-	print('Does the word {} appear in the Trie? {}'.format(word, trie.search(word)))
-
-	word = 'there'
-	print('Does the word {} appear in the Trie? {}'.format(word, trie.search(word)))
-
-	word = 'bye'
-	print('Does the word {} appear in the Trie? {}'.format(word, trie.search(word)))
-
-	word = 'answer'
-	print('Does the word {} appear in the Trie? {}'.format(word, trie.search(word)))
-
-	word = 'an'
-	print('Does the word {} appear in the Trie? {}'.format(word, trie.search(word)))
+	return substr

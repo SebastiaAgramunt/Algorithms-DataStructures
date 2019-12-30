@@ -5,6 +5,8 @@ class Node:
 		self.children = [None]*26
 		# Deternines if the current Node is end of world
 		self.endOfWord = False
+		# Times we passed though this node storing one letter
+		self.n = 0
 
 class Trie:
 	def __init__(self):
@@ -23,6 +25,7 @@ class Trie:
 				nodeCrawler.children[idx] = Node()
 
 			nodeCrawler = nodeCrawler.children[idx]
+			nodeCrawler.n+=1
 
 		nodeCrawler.endOfWord = True
 

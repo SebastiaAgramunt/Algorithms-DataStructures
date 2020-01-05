@@ -7,11 +7,7 @@ int binary_search_helper(int* arr, int low, int high, int val){
 
 	if(high>=low){
 		int mid = low + (high-low)/2;
-
-		printf("%d  %d  %d  %d  %d\n",low, mid, high,arr[mid], val);
 		if(arr[mid] == val){
-			//int* i = &arr[mid];
-			//i = &mid;
 			return mid;
 		}
 		if(arr[mid]>val){

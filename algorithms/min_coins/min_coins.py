@@ -10,14 +10,19 @@ def CoinCombinations(coins: List, val: int):
 			change.append(coins[i])
 			reps.append(ammount//coins[i])
 
-			ammount -= coins[i]*(ammount//coins[i])
+			ammount = ammount%coins[i]
+			if ammount == 0:
+				return change, reps
+
+	if ammount!=0:
+		return [], []
 
 	return change, reps
 
 if __name__ == "__main__":
 	
 	coins = [500, 200, 100, 50, 20, 10, 5]
-	val = 1475
+	val = 1470
 
 	print("Minimum number of coins problem:\n==============================\n\n")
 	print("Give change for {} eur".format(val))

@@ -11,11 +11,17 @@ from random import randint, seed
 
 class BinHeap:
     '''Basic implementation of binary heap:
-    The binary heap can be programmed as a list whose indexes indicate the realtionship of father-son
+    Binary heap is a list ranging from indexes i=0 to i=len(l)-1 where l
+    is the original list.
+    Such a list has indexes that indicate the realtionship of father-son
+
     Given node i:
         Left son: 2i+1
         Right son: 2i+2
-        Father: i//2 
+        Father: (i-1)//2
+
+    first element index: 0
+    last element index: len(l)-1
 
     This binary heap is programmed as MinHeap, index 0 is the minimum value
     and sons have larger values than the node at i.

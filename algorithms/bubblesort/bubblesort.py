@@ -1,50 +1,25 @@
-# Mergesort:
-# Best: nlogn
-# Average: nlogn
-# Worst: nlogn
-# Space complexity worst: n
-
+from typing import List
 import unittest
 
-def mergesort(arr): 
-    if len(arr)>1:
-        m = len(arr)//2
+def bubblesort(arr: List[int]) -> None:
+    n = len(arr)
 
-        left_arr = arr[:m]
-        right_arr = arr[m:]
+    aSwap = True
 
-        mergesort(left_arr)
-        mergesort(right_arr)
+    # Do while there is a pass without any swaps
+    while aSwap:
+        aSwap = False
+        for i in range(0, n-1):
+            # compare one with the next
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                aSwap = True
 
-        # now we merge the sorted arrays left and right
-        i, j, k = 0, 0, 0
-
-        while i < len(left_arr) and j < len(right_arr):
-            if left_arr[i] < right_arr[j]:
-                arr[k] = left_arr[i]
-                i+=1
-            else:
-                arr[k] = right_arr[j]
-                j+=1
-            k+=1
-
-        # at this point we have put all elements either of left or right
-        # we have to complete until all elements are in the array
-        while i < len(left_arr):
-            arr[k] = left_arr[i]
-            i+=1
-            k+=1
-
-        while j < len(right_arr):
-            arr[k] = right_arr[j]
-            j+=1
-            k+=1
-
-class Testmergesort(unittest.TestCase):
+class Testbubblesort(unittest.TestCase):
 
     def test_1(self):
         arr = [10, 9, 8, 7, 6, 5, 4, 3, 2]
-        mergesort(arr)
+        bubblesort(arr)
         self.assertEqual(arr, [2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     def test_1_bis(self):
@@ -61,7 +36,7 @@ class Testmergesort(unittest.TestCase):
          19, 16, 78, 100, 90, 32, 9, 54, 69, 36, 94, 22, 67, 31, 37, 44, 77,
          45, 20, 27, 2, 96, 99, 25, 58, 14]
 
-        mergesort(arr)
+        bubblesort(arr)
 
         sol = [1, 1, 1, 2, 2, 2, 2, 5, 6, 6, 6, 7, 7, 8, 9, 9, 9, 10, 11, 11,
          14, 14, 14, 15, 16, 16, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21,
@@ -80,20 +55,18 @@ class Testmergesort(unittest.TestCase):
 
     def test_2(self):
         arr = [1]
-        mergesort(arr)
+        bubblesort(arr)
         self.assertEqual(arr, [1])
 
     def test_3(self):
         arr = []
-        mergesort(arr)
+        bubblesort(arr)
         self.assertEqual(arr, [])
 
     def test_4(self):
         arr = [1, 2]
-        mergesort(arr)
+        bubblesort(arr)
         self.assertEqual(arr, [1, 2])
 
-
-# driver code to test the above code 
-if __name__ == '__main__': 
+if __name__ == "__main__":
     unittest.main()

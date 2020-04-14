@@ -28,21 +28,21 @@ def insert(root, val):
 
 
 def printInorder(root): 
-  
+    # Depth first transversal InOrder
     if root:
         printInorder(root.left) 
         print(root.val)
         printInorder(root.right) 
   
 def printPostorder(root): 
-
+    # Depth first transversal PostOrder
     if root:
         printPostorder(root.left) 
         printPostorder(root.right) 
         print(root.val)
   
 def printPreorder(root): 
-
+    # Depth first transversal PreOrder
     if root:
         print(root.val)
         printPreorder(root.left) 
@@ -59,6 +59,7 @@ def search(root, val):
     else:
         return search(root.left, val)
 
+
 if __name__ == '__main__':
 
     root = Node()
@@ -68,6 +69,8 @@ if __name__ == '__main__':
     insert(root, 5)
     insert(root, 3)
     insert(root, 9)
+
+    print("Printing InOrder binary tree:")
     printInorder(root)
 
 
@@ -77,14 +80,4 @@ if __name__ == '__main__':
             print(f"Could not find {val} in the binary tree")
         else:
             print(f"Found value {node.val} in the tree")
-
-
-    # print("Prinding in order transversal")
-    #printInorder(root)
-
-    # print("Printing post order transversal")
-    # printPostorder(root)
-
-    # print("Printing pre order transversal")
-    # printPreorder(root)
 

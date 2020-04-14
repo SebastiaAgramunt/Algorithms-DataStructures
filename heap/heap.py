@@ -22,6 +22,7 @@ class BinHeap:
 
     first element index: 0
     last element index: len(l)-1
+    larger element with sons: len(l)//2 -1
 
     This binary heap is programmed as MinHeap, index 0 is the minimum value
     and sons have larger values than the node at i.
@@ -32,9 +33,12 @@ class BinHeap:
 
 
     def _Heapify(self,l):
+
+        # Larger elemen that has sons
         i = len(l) // 2 -1
         self.__heapList = l[:]
         while (i >= 0):
+            # swap with child if child is smaller
             self._percDown(i)
             i = i - 1
 

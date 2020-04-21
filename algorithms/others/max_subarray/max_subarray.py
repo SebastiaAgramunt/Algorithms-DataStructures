@@ -1,38 +1,32 @@
 import sys
 
-def MaxCrossing(arr, l, r, m):
-    left_sum = -sys.maxsize
-    right_sum = -sys.maxsize
+def MaxSubArray(arr):
+    n = len(arr)
+    max_so_far = -sys.maxsize
+    max_ending_here = 0
 
-    cum_sum = 0
-    for i in range(m, l-1, -1):
-        cum_sum += arr[i]
-        if cum_sum>left_sum:
-            left_sum = cum_sum
+    # Agorithm that recursively finds the maximum of the subarray
+    # finishing at index i.
+    for i in range(0, n):
 
-    cum_sum = 0
-    for i in range(m+1, r+1):
-        cum_sum += arr[i]
-        if cum_sum>right_sum:
-            right_sum = cum_sum
+        # max subarray ending at i is maximum ending at i-1 plus
+        # the value of the arr at i.
+        max_ending_here = max_ending_here+arr[i]
 
-    return left_sum+right_sum
+        # if the value of arr[i] is larger than max_ending at i
+        # then this value is the new maximum ending there
+        if arr[i] > max_ending_here:
+            max_ending_here = arr[i]
 
-def MaxSubarray(arr, l, r):
+        # We have now the maximum ending at i, is this the maximum value found
+        # so far?
+        if max_so_far< max_ending_here:
+            max_so_far = max_ending_here
 
-    if l==r:
-        return arr[l]
-
-    m = (l+r)//2
-
-    return max(MaxSubarray(arr, l, m), 
-        MaxSubarray(arr, m+1, r), 
-        MaxCrossing(arr, l, r, m))
-
+    return max_so_far
 
 if __name__ == "__main__":
 
     arr = [1, -13, 5, -8, 5, -3, 10]
     n = len(arr)
-    print(MaxSubarray(arr, 0, n-1))
-    #print(MaxCrossing(arr, 0, len(arr)-1, 3))
+    print(MaxSubArray(arr))

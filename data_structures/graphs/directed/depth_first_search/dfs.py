@@ -25,43 +25,38 @@ def get_nodes(graph: GraphType) -> NodesList:
     return nodes
 
 
-class Queue:
-    # simple queue impolementation in python
+class Stack:
     def __init__(self):
-        self.queue = []
-
-    def add(self, val):
-        self.queue.append(val)
+        self.stack = []
 
     def pop(self):
-        if len(self.queue) > 0:
-            val = self.queue[0]
-            self.queue = self.queue[1:]
+        if not self.isEmpty():
+            val = self.stack[0]
+            self.stack = self.stack[1:]
             return val
         return None
 
-    def isEmpty(self) -> bool:
-        return True if len(self.queue) == 0 else False
+    def add(self, val):
+        self.stack = [val] + self.stack
+
+    def isEmpty(self):
+        return False if len(self.stack) > 0 else True
 
 
-def bfs(graph: GraphType, start: str) -> None:
-    """Breadth First Search to transverse a graph
-    Input:
-        - graph: a GraphType indicating the connected nodes
-        - start: a starting point to transverse all the graph
-    """
+def dfs(graph: GraphType, start: str) -> None:
     nodes = get_nodes(graph)
-    queue = Queue()
+    stack = Stack()
 
-    queue.add(start)
+    stack.add(start)
 
-    while not queue.isEmpty():
-        node = queue.pop()
+    while not stack.isEmpty():
+
+        node = stack.pop()
         if not nodes[node].visited:
             nodes[node].visited = True
             for neighbor in graph[node]:
-                queue.add(neighbor)
-            print(f"Node {node} visited, Queue: {queue.queue}")
+                stack.add(neighbor)
+            print(f"Node {node} visited, Stack: {stack.stack}")
 
 
 if __name__ == "__main__":
@@ -79,4 +74,4 @@ if __name__ == "__main__":
     # transverse from start_node all the graph
     # visit all nodes that you can
     start_node = "A"
-    bfs(graph, start_node)
+    dfs(graph, start_node)

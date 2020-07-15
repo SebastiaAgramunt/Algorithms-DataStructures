@@ -1,6 +1,6 @@
 # Binary Search Tree
 # Access: logn
-# Search: 
+# Search:
 
 
 class Node:
@@ -8,6 +8,7 @@ class Node:
         self.val = val
         self.left = None
         self.right = None
+
 
 def insert(root, val):
     node = Node(val)
@@ -27,26 +28,28 @@ def insert(root, val):
                 insert(root.left, val)
 
 
-def printInorder(root): 
+def printInorder(root):
     # Depth first transversal InOrder
     if root:
-        printInorder(root.left) 
+        printInorder(root.left)
         print(root.val)
-        printInorder(root.right) 
-  
-def printPostorder(root): 
+        printInorder(root.right)
+
+
+def printPostorder(root):
     # Depth first transversal PostOrder
     if root:
-        printPostorder(root.left) 
-        printPostorder(root.right) 
+        printPostorder(root.left)
+        printPostorder(root.right)
         print(root.val)
-  
-def printPreorder(root): 
+
+
+def printPreorder(root):
     # Depth first transversal PreOrder
     if root:
         print(root.val)
-        printPreorder(root.left) 
-        printPreorder(root.right) 
+        printPreorder(root.left)
+        printPreorder(root.right)
 
 
 def search(root, val):
@@ -60,7 +63,7 @@ def search(root, val):
         return search(root.left, val)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     root = Node()
 
@@ -73,11 +76,9 @@ if __name__ == '__main__':
     print("Printing InOrder binary tree:")
     printInorder(root)
 
-
     for val in [4, 1, 5, 7, 10, 14]:
         node = search(root, val)
         if node is None:
             print(f"Could not find {val} in the binary tree")
         else:
             print(f"Found value {node.val} in the tree")
-

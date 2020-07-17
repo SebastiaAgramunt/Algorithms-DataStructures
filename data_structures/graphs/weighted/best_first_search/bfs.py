@@ -56,7 +56,7 @@ def get_adjacency_matrix(cities: List[str], d_max: int) -> AdjacencyMatrixType:
     for i in range(N):
         for j in range(i + 1, N):
             if random() > 0.8:
-                val = randrange(d_max//3)
+                val = randrange(d_max // 3)
             else:
                 val = randrange(d_max)
             adjacency_matrix[i][j] = val
@@ -71,7 +71,7 @@ def best_first_search(
     cities: List[str],
     cities_str_int: Dict[str, int],
     adjacency_matrix: AdjacencyMatrixType,
-):  
+):
     """
     Return best first search
     """
@@ -80,7 +80,7 @@ def best_first_search(
 
     # we store the path node and the weight
     node = Node(start)
-    #paths_heap = [Node(start)]
+    # paths_heap = [Node(start)]
 
     step = -1
     while node.city != stop:
@@ -95,7 +95,9 @@ def best_first_search(
         for neighbor_city_str in cities:
             if not node.visited(neighbor_city_str):
                 neighbor_city_int = cities_str_int[neighbor_city_str]
-                weight = node.cost + adjacency_matrix[current_city_int][neighbor_city_int]
+                weight = (
+                    node.cost + adjacency_matrix[current_city_int][neighbor_city_int]
+                )
                 print(f"\tCost to go to {neighbor_city_str}: {weight}")
 
                 if weight < min_weight:

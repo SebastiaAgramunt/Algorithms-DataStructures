@@ -61,7 +61,7 @@ def get_adjacency_matrix(cities: List[str], d_max: int) -> AdjacencyMatrixType:
     for i in range(N):
         for j in range(i + 1, N):
             if random() > 0.8:
-                val = randrange(d_max//3)
+                val = randrange(d_max // 3)
             else:
                 val = randrange(d_max)
             adjacency_matrix[i][j] = val
@@ -76,7 +76,7 @@ def best_first_search(
     cities: List[str],
     cities_str_int: Dict[str, int],
     adjacency_matrix: AdjacencyMatrixType,
-):  
+):
     """
     Return best first search
     """
@@ -88,11 +88,11 @@ def best_first_search(
 
     step = -1
     while len(paths_heap) > 0:
-        step+=1
+        step += 1
         print(f"\nStep {step}:")
         for elem in paths_heap:
             print(f"\tPath = {elem.path}")
-        
+
         node = heapq.heappop(paths_heap)
         print(f"\tpopping min path: {node.path}")
 
@@ -106,7 +106,9 @@ def best_first_search(
         for neighbor_city_str in cities:
             if not node.visited(neighbor_city_str):
                 neighbor_city_int = cities_str_int[neighbor_city_str]
-                weight = node.cost + adjacency_matrix[current_city_int][neighbor_city_int]
+                weight = (
+                    node.cost + adjacency_matrix[current_city_int][neighbor_city_int]
+                )
 
                 new_node = deepcopy(node)
                 new_node.add_step(neighbor_city_str, weight)
@@ -151,4 +153,3 @@ if __name__ == "__main__":
     )
 
     print(f"\n\nBest path found:\n\t{path}")
-

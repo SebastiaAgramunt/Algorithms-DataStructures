@@ -10,7 +10,9 @@ class Node:
         self.right = None
 
 
-def insert(root, val):
+# inserts on left if smaller than root
+# and right if larger than root
+def insert(root: Node, val: int):
     node = Node(val)
 
     if root.val is None:
@@ -28,7 +30,7 @@ def insert(root, val):
                 insert(root.left, val)
 
 
-def printInorder(root):
+def printInorder(root: Node):
     # Depth first transversal InOrder
     if root:
         printInorder(root.left)
@@ -36,7 +38,7 @@ def printInorder(root):
         printInorder(root.right)
 
 
-def printPostorder(root):
+def printPostorder(root: Node):
     # Depth first transversal PostOrder
     if root:
         printPostorder(root.left)
@@ -44,7 +46,7 @@ def printPostorder(root):
         print(root.val)
 
 
-def printPreorder(root):
+def printPreorder(root: Node):
     # Depth first transversal PreOrder
     if root:
         print(root.val)
@@ -52,7 +54,7 @@ def printPreorder(root):
         printPreorder(root.right)
 
 
-def search(root, val):
+def search(root: Node, val:int):
     # search for a value in the three
     if root is None or root.val == val:
         return root
@@ -67,14 +69,20 @@ if __name__ == "__main__":
 
     root = Node()
 
-    insert(root, 10)
     insert(root, 1)
-    insert(root, 5)
+    insert(root, 2)
     insert(root, 3)
-    insert(root, 9)
+    insert(root, 4)
+    insert(root, 5)
 
     print("Printing InOrder binary tree:")
     printInorder(root)
+
+    print("Printing PostOrder binary tree:")
+    printPostorder(root)
+
+    print("Printing PreOrder binary tree:")
+    printPreorder(root)
 
     for val in [4, 1, 5, 7, 10, 14]:
         node = search(root, val)

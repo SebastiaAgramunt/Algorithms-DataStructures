@@ -12,15 +12,20 @@ from typing import List
 
 def maxsum(arr: List[int]) -> int:
     max_so_far = 0
-    max_now = 0
+    max_here = 0
 
     for i in arr:
-        if i > 0:
-            max_now += i
-            if max_now > max_so_far:
-                max_so_far = max_now
-        else:
-            max_now = 0
+
+        # max at this point can be the previous max + the current element
+        max_here += i
+
+        # if the max ending here is larger than the already found, set it as max
+        if max_here > max_so_far:
+            max_so_far = max_here
+
+        # if we reach negative values ending here, just set max_here to zero
+        if max_here < 0:
+            max_here = 0
 
     return max_so_far
 
